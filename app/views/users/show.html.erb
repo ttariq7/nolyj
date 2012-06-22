@@ -1,0 +1,88 @@
+<% provide(:title, @user.surname) %>
+
+<div style="">
+
+	<div class="prosquare" style="float:left; margin-left:33px; margin-top:10px;">
+		<h1 style="color:white;text-align:left;">Nolyj In</h1>
+		<% @nolyjins.each do |nolyjin| %>
+		<li style="color:white"><%= nolyjin.content %></li>
+		<% end %>
+	</div>
+	
+	<div class="prosquare" style="float:left;margin-left:10px; margin-top:10px; width:240px;">
+		
+	</div>
+	
+	<div class="prosquare" style="float:left;margin-left:10px; margin-top:10px;">
+		<h1 style="color:white;text-align:left;">Seeking Nolyj In</h1>
+		<% @snolyjins.each do |snolyjin| %>
+		<li style="color:white"><%= snolyjin.content %></li>
+		<% end %>
+	</div>
+	
+	<div class="prosquare" style="clear:both;float:left;margin-left:33px; margin-top:20px;">
+		<h1 style="color:white;text-align:left;">Achievements</h1>
+		<% @achievements.each do |achievement| %>
+		<li style="color:white"><%= achievement.content %></li>
+		<% end %>
+	</div>
+	
+	<div class="prosquare" style="position:relative;float:left;margin-left:10px; margin-top:20px;width:240px;"></div>
+	
+	<div class="prosquare" style="position:relative;float:left;margin-left:10px; margin-top:20px;margin-bottom:100px;">
+		
+		<%= @user.aboutme %>
+	</div>
+
+</div>
+<div style="clear:both;">
+	
+	
+	
+	
+	
+	
+    <% @microposts.each do |micropost| %>
+
+ 	<div id="container" style="margin-right:300px; margin-left:30px;margin-top:100px;">
+	 <div class="item" style="margin-bottom:50px;margin-left:0px;">
+	 	<div class="backpost" data-toggle="modal" href="#<%= micropost.id %>" >
+			<div class="link"><a href= <%= micropost.link %> ></a></div>
+			<h2 class="backcontent"> <%= micropost.content %> </h2>
+			<h1><%= micropost.header %></h1>
+
+			
+			
+		 </div>
+		</div>
+	  </div>
+	</div>
+	<div style="background:black;position:fixed;left:310px;top:280px;width:95%;height:89%;" class="modal hide" id="<%= micropost.id %>" >
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal">X</button>
+		    <h3 style="color:#0071BC;"><%= micropost.header %></h3>
+		  </div>
+	  	<div class="modal-body">
+			<h2><%= micropost.content %></h2>
+			<div class="link"><a href= <%= micropost.link %> ></a></div>
+		</div>
+		<% @micropost = current_user.microposts.build %>
+		<a href="" class="btn btn-primary"> 
+			
+
+			
+		</a>
+	  </div>
+    <% end %>
+
+
+
+	
+
+	<script type="text/javascript">
+	window.onload = function() {
+	  var wall = new Masonry( document.getElementById('container'), {
+	    columnWidth: 240
+	  });
+	};
+	</script>

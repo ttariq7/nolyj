@@ -1,0 +1,63 @@
+<% provide(:title, "Edit user") %> 
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for@user, :html => {:multipart => true} do |f| %>
+	  
+      <%= f.file_field :Avatar %>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+
+      <%= f.label :status %>
+      <%= f.text_field :status %>
+
+	  <%= f.label :aboutme %>
+      <%= f.text_field :aboutme %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
+
+<div style="margin-left:200px;margin-top:50px;margin-bottom:50px;">
+<% @achievement = current_user.achievements.build %>
+<%= form_for(@achievement) do |f| %>
+<div class="field" style="height:50px;">
+<%= f.text_area :date, placeholder: "Date" %>
+</div>
+<div class="field" style="height:50px;margin-bottom:10px;">
+<%= f.text_area :content, placeholder: "Achievements" %>
+</div>
+<%= f.submit "Post", style: "width:291px;", class: "btn btn-large btn-inverse" %>
+<% end %>
+
+<% @nolyjin = current_user.nolyjins.build %>
+<%= form_for(@nolyjin) do |f| %>
+
+<div class="field" style="height:50px;margin-bottom:10px;">
+<%= f.text_area :content, placeholder: "Nolyj in..." %>
+</div>
+<%= f.submit "Post", style: "width:291px;", class: "btn btn-large btn-inverse" %>
+<% end %>
+
+<% @snolyjin = current_user.snolyjins.build %>
+<%= form_for(@snolyjin) do |f| %>
+
+<div class="field" style="height:50px;margin-bottom:10px;">
+<%= f.text_area :content, placeholder: "Seeking Nolyj in..." %>
+</div>
+<%= f.submit "Post", style: "width:291px;", class: "btn btn-large btn-inverse" %>
+<% end %>
+</div>

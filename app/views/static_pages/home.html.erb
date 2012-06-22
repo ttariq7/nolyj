@@ -1,0 +1,25 @@
+<div style="margin-left:100px; margin-top:100px;">
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-inverse" %>
+</div>
+
+<aside class="row">
+  <div style="margin-top:50px;">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+	
+	
+      <%= f.label :login_id %>
+	<div class="formfield" style="background:black;">
+      <%= f.text_field :login_id %>
+	</div>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</aside>

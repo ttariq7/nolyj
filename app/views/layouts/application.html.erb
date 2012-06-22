@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nolyj | <%= yield(:title) %></title>
+	<%= javascript_include_tag "vert", media: "all" %>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "jquery.min" %>
+	<%= javascript_include_tag "jquery.embedly.min" %>
+	<%= javascript_include_tag "masonry.min" %>
+	
+    <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+    $('document').ready(function(){
+      $('div.link').embedly({
+        maxWidth: 216,
+        wmode: 'transparent',
+        method: 'after',
+        key: 'ed3eccacb92c11e1ab024040aae4d8c9',
+      });
+    });
+  </script>
+
+  </head>
+  <body>
+
+	
+	
+	<div style="z-index:100;position:fixed;left:10px;bottom:10px;color:#0071BC;font-weight:bold;">
+	NOLYJ 
+	</div>
+
+	<% if signed_in? %>
+	<div  class="icon-wrench" style="position:fixed;z-index:100;left:15px;top:7px;">
+	  <a class="icon-wrench" data-toggle="dropdown" href="#"></a>
+	  <ul class="dropdown-menu">
+	    <%= link_to "Settings", edit_user_path(current_user) %>
+		<%= link_to "Sign out", signout_path, method: "delete" %>
+	  </ul>
+	</div>
+
+
+	<% @micropost = current_user.microposts.build %>
+	
+
+
+	<aside class="span4">
+		
+		<div style="color:white">
+		<%= @current_user.first_name %>, <%= @current_user.surname %>, <%= link_to  @current_user.login_id, current_user %>
+
+		</div>
+			
+	<a style="color:#0071BC;" class="btn btn-large btn-inverse" data-toggle="modal" href="#myModal" >Share</a>
+
+	</aside>
+		
+	
+	
+		<div style="background:black;position:fixed;left:500px;top:280px;width:50%;height:80%;" class="modal hide" id="myModal">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal">X</button>
+		    <h3 style="color:#0071BC;">Share Your Nolyj</h3>
+		  </div>
+		  <div class="modal-body">
+
+			<%= form_for(@micropost) do |f| %>
+			<div class="field" style="height:50px;">
+			<%= f.text_area :type, placeholder: "Type of Nolyj" %>
+			</div>
+			<div class="field" style="height:50px;">
+			<%= f.text_area :header, placeholder: "Headline" %>
+			</div>
+			<div class="field" style="height:50px;">
+			<%= f.text_area :link, placeholder: "Paste link" %>
+			</div>
+			<div class="field" style="height:50px;margin-bottom:10px;">
+			<%= f.text_area :content, placeholder: "Further Details..." %>
+			</div>
+			<div class="field" style="height:50px;margin-bottom:10px;">
+			<%= f.text_area :tags, placeholder: "Tag it" %>
+			</div>
+			<div class="field" style="height:50px;">
+			<%= f.text_area :location, placeholder: "Location" %>
+			</div>
+	
+		
+			
+		 
+			
+
+		  </div>
+		  <div class="modal-footer" style="background:#0071BC;bottom:0px;position:relative;">
+		    <a href="#" class="btn" data-dismiss="modal">Close</a>
+		    <%= f.submit "Post", style: "width:100px;height:27px;color:#0071BC;", class: "btn btn-inverse" %>
+			
+			<% end %>
+
+		  </div>
+		</div>
+
+	<% else %>
+	<% end %>
+	
+
+		
+    <%= yield %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<div style="height:100%;width:300px;position:fixed;right:0px;top:0px;
+	
+	background-image: linear-gradient(left , rgb(31,31,31) 16%, rgb(0,0,0) 55%);
+	background-image: -o-linear-gradient(left , rgb(31,31,31) 16%, rgb(0,0,0) 55%);
+	background-image: -moz-linear-gradient(left , rgb(31,31,31) 16%, rgb(0,0,0) 55%);
+	background-image: -webkit-linear-gradient(left , rgb(31,31,31) 16%, rgb(0,0,0) 55%);
+	background-image: -ms-linear-gradient(left , rgb(31,31,31) 16%, rgb(0,0,0) 55%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		color-stop(0.16, rgb(31,31,31)),
+		color-stop(0.55, rgb(0,0,0))
+	);"></div>
+		
+		<div style="height:25px;width:100%;position:fixed;top:0px;
+
+		background-image: linear-gradient(bottom, rgb(31,31,31) 16%, rgb(0,0,0) 87%);
+		background-image: -o-linear-gradient(bottom, rgb(31,31,31) 16%, rgb(0,0,0) 87%);
+		background-image: -moz-linear-gradient(bottom, rgb(31,31,31) 16%, rgb(0,0,0) 87%);
+		background-image: -webkit-linear-gradient(bottom, rgb(31,31,31) 16%, rgb(0,0,0) 87%);
+		background-image: -ms-linear-gradient(bottom, rgb(31,31,31) 16%, rgb(0,0,0) 87%);
+
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.16, rgb(31,31,31)),
+			color-stop(0.87, rgb(0,0,0))
+		);"><div>
+			
+			
+			<div style="height:45px;width:100%;position:fixed;bottom:0px;
+
+			background-image: linear-gradient(top, rgb(31,31,31) 16%, rgb(0,0,0) 91%);
+			background-image: -o-linear-gradient(top, rgb(31,31,31) 16%, rgb(0,0,0) 91%);
+			background-image: -moz-linear-gradient(top, rgb(31,31,31) 16%, rgb(0,0,0) 91%);
+			background-image: -webkit-linear-gradient(top, rgb(31,31,31) 16%, rgb(0,0,0) 91%);
+			background-image: -ms-linear-gradient(top, rgb(31,31,31) 16%, rgb(0,0,0) 91%);
+
+			background-image: -webkit-gradient(
+				linear,
+				right top,
+				right bottom,
+				color-stop(0.16, rgb(31,31,31)),
+				color-stop(0.91, rgb(0,0,0))
+			);"></div>
+				
+				<div style="height:100%;width:25px;position:fixed;top:0px;left:0px;
+
+				background-image: linear-gradient(right , rgb(31,31,31) 16%, rgb(0,0,0) 88%);
+				background-image: -o-linear-gradient(right , rgb(31,31,31) 16%, rgb(0,0,0) 88%);
+				background-image: -moz-linear-gradient(right , rgb(31,31,31) 16%, rgb(0,0,0) 88%);
+				background-image: -webkit-linear-gradient(right , rgb(31,31,31) 16%, rgb(0,0,0) 88%);
+				background-image: -ms-linear-gradient(right , rgb(31,31,31) 16%, rgb(0,0,0) 88%);
+
+				background-image: -webkit-gradient(
+					linear,
+					right bottom,
+					left bottom,
+					color-stop(0.16, rgb(31,31,31)),
+					color-stop(0.88, rgb(0,0,0))
+				);"></div>
+				
+				
+				<div style="z-index:100;position:fixed;background-color:#1D1D1D; height:20px; width:20px; top:25px; right:300px;"></div>
+				<div style="z-index:100;position:fixed;background-color:black; height:20px; width:20px; top:25px; right:300px; border-top-right-radius:15px;"></div>
+				<div style="z-index:100;position:fixed;background-color:#1D1D1D; height:20px; width:20px; bottom:45px; right:300px;"></div>
+				<div style="z-index:100;position:fixed;background-color:black; height:20px; width:20px; bottom:45px; right:300px; border-bottom-right-radius:15px;"></div>
+				<div style="position:fixed;background-color:#1D1D1D; height:20px; width:20px; top:25px; left:25px;"></div>
+				<div style="position:fixed;background-color:black; height:20px; width:20px; top:25px; left:25px; border-top-left-radius:15px;"></div>
+				<div style="position:fixed;background-color:#1D1D1D; height:20px; width:20px; bottom:45px; left:25px;"></div>
+				<div style="position:fixed;background-color:black; height:20px; width:20px; bottom:45px; left:25px; border-bottom-left-radius:15px;"></div>	
+		
+
+
+	
+
+  </body>
+</html>
